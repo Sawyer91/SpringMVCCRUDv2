@@ -18,6 +18,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
+
     public User() {
 
     }
@@ -27,12 +28,12 @@ public class User {
         this.password = password;
     }
 
-//    public User(long id, String name, String password) {
-//        this.id = id;
-//        this.name = name;
-//        this.password = password;
-//
-//    }
+    public User(long id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+
+    }
 
     public long getId() {
         return id;
