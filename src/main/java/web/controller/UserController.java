@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "index")
+    @GetMapping(value = "/")
     public String usersGet(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
         return "index";
@@ -29,19 +29,19 @@ public class UserController {
     @PostMapping(value = "edit")
     public String editPost(User user) {
         userService.updateUser(user);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @PostMapping(value = "add")
     public String addPost(@RequestParam("name") String name, @RequestParam("password") String password) {
         userService.addUser(new User(name, password));
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @PostMapping(value = "delete")
     public String deletePost(@RequestParam("id") Integer id) {
         userService.removeUser(id);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
 }
