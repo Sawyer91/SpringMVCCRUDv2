@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
-import java.sql.SQLTransactionRollbackException;
+
 import java.util.List;
 
 @Service
@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao dao;
 
-    @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
         return dao.getAllUsers();
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public boolean addUser(User user) {
-        if (user.getName().trim().length() == 0 || user.getPassword().trim().length() == 0) {
+        if (user.getName().isEmpty() || user.getPassword().isEmpty()) {
             return false;
         } else {
             dao.addUser(user);
@@ -45,7 +44,6 @@ public class UserServiceImpl implements UserService {
         dao.updateUser(user);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public User getUserById(long id) {
         return dao.getUserById(id);
