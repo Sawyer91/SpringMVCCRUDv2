@@ -17,8 +17,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List getAllUsers() {
-        String queryString = "select model from " + User.class.getName() + " model";
-        List<User> list = entityManager.createQuery(queryString).getResultList();
+        List<User> list = entityManager.createQuery("From User").getResultList();
         return list;
     }
 
@@ -35,11 +34,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        User user1 = entityManager.find(User.class, user.getId());
-        entityManager.detach(user1);
-        user1.setName(user.getName());
-        user1.setPassword(user.getPassword());
-        entityManager.merge(user1);
+        entityManager.merge(user);
     }
 
     @Override

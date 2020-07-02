@@ -15,31 +15,31 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/")
-    public String usersGet(ModelMap model) {
+    public String users(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
         return "index";
     }
 
     @GetMapping(value = "edit")
-    public String editGet(ModelMap model, User user) {
+    public String edit(ModelMap model, User user) {
         model.addAttribute("user", user);
         return "edit";
     }
 
     @PostMapping(value = "edit")
-    public String editPost(User user) {
+    public String edit(User user) {
         userService.updateUser(user);
         return "redirect:/";
     }
 
     @PostMapping(value = "add")
-    public String addPost(@RequestParam("name") String name, @RequestParam("password") String password) {
+    public String add(@RequestParam("name") String name, @RequestParam("password") String password) {
         userService.addUser(new User(name, password));
         return "redirect:/";
     }
 
     @PostMapping(value = "delete")
-    public String deletePost(@RequestParam("id") Integer id) {
+    public String delete(@RequestParam("id") Integer id) {
         userService.removeUser(id);
         return "redirect:/";
     }
