@@ -31,6 +31,7 @@
             <td></td>
             <td><c:out value="${user.name}"/></td>
             <td><c:out value="${user.password}"/></td>
+            <td><c:out value="${user.role}"/></td>
             <td>
                 <form action="/edit" method="get">
                     <input type="hidden" name="name" value="${user.name}">

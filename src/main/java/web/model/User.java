@@ -24,6 +24,7 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Role")
     private Set<Role> role;
 
     public Set<Role> getRole() {
@@ -43,11 +44,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public User(long id, String name, String password) {
+    public User(long id, String name, String password, Set<Role> role) {
         this.id = id;
         this.name = name;
         this.password = password;
-
+        this.role = role;
     }
 
     public long getId() {
@@ -104,5 +105,6 @@ public class User implements UserDetails {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }
