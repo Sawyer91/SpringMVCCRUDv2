@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Repository
-
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
@@ -44,11 +43,11 @@ public class UserDaoImp implements UserDao {
         return user;
     }
 
-//    @Override
-//    public UserDetails findByUsername(String login) {
-//       User user = (User) entityManager.createQuery("from User where login = :login")
-//               .setParameter("login", login)
-//               .getSingleResult();
-//       return user;
-//    }
+    @Override
+    public UserDetails findByUsername(String login) {
+       User user = (User) entityManager.createQuery("from User where name = :login")
+               .setParameter("login", login)
+               .getSingleResult();
+       return user;
+    }
 }

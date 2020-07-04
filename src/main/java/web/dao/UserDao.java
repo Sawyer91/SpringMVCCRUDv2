@@ -16,5 +16,5 @@ public interface UserDao {
 
     public User getUserById(long id);
 
-//    public UserDetails findByUsername(String login);
+    public UserDetails findByUsername(String login);
 }

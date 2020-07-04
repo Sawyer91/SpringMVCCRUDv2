@@ -50,8 +50,8 @@ public class DBConfig {
         lef.setDataSource(getDataSource());
         lef.setJpaVendorAdapter(jpaVendorAdapter());
         Properties properties = new Properties();
-        properties.getProperty("hibernate.show_sql");
-        properties.getProperty("hibernate.hbm2ddl.auto");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         lef.setJpaProperties(properties);
         return lef;
     }
