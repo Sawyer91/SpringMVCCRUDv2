@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Add</title>
+    <title>Admin</title>
 </head>
 <body>
 <form action="/add" method="post">
@@ -18,7 +18,7 @@
     <br>
     <button type="submit">add</button>
 </form>
-
+<a href="<c:url value="/logout" />">Logout</a>
 <br>
 <table>
     <tr>

@@ -1,6 +1,7 @@
 package web.dao;
 
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
@@ -42,4 +43,12 @@ public class UserDaoImp implements UserDao {
         User user = entityManager.find(User.class, id);
         return user;
     }
+
+//    @Override
+//    public UserDetails findByUsername(String login) {
+//       User user = (User) entityManager.createQuery("from User where login = :login")
+//               .setParameter("login", login)
+//               .getSingleResult();
+//       return user;
+//    }
 }
