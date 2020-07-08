@@ -3,22 +3,43 @@ package web.dao;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
+import web.model.Role;
 import web.model.User;
 
 import javax.persistence.*;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class UserDaoImp implements UserDao {
 
-    @PersistenceContext
     private EntityManager entityManager;
 
+    public UserDaoImp(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
-    public List getAllUsers() {
-        List<User> list = entityManager.createQuery("From User").getResultList();
-        return list;
+    public List<User> getAllUsers() {
+        TypedQuery<User> query= entityManager.createQuery("from User", User.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Role> readRole() {
+        TypedQuery<Role> query= entityManager.createQuery("from Role", Role.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Set<Role> getRoles(String[] ids) {
+        TypedQuery<Role> query= entityManager.createQuery("from Role where id = :id", Role.class);
+        Set<Role> roles = new HashSet<>();
+        Arrays.stream(ids).forEach(roleId -> {query.setParameter("id", Long.parseLong(roleId)); roles.add(query.getSingleResult());});
+        return roles;
     }
 
     @Override

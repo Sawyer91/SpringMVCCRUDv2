@@ -17,6 +17,17 @@ public class Role implements GrantedAuthority
     @Column(name = "role")
     private String role;
 
+    @Transient
+    private boolean isInUser;
+
+    public boolean isInUser() {
+        return isInUser;
+    }
+
+    public void setInUser(boolean inUser) {
+        isInUser = inUser;
+    }
+
     public Role() {
     }
 

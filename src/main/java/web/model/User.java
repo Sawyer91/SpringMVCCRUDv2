@@ -106,5 +106,8 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public boolean isRoleInUser(Role role) {
+        return this.role.stream().anyMatch(role1 -> role1.getId() == role.getId());
+    }
 
 }
