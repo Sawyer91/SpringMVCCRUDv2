@@ -8,12 +8,11 @@
 <body>
 
 <form th:action="@{/admin/edit}" method="post">
-    login: <input type="text" name="login" th:value="${user.name}"/>
+    login: <input type="text" name="name" th:value="${user.name}"/>
     Password: <input type="text" name="password" th:value="${user.password}"/>
-    email: <input type="text" name="email" th:value="${user.email}"/>
     role:
     <select name="roleIds" th:size="${roles.size()}" multiple>
-        <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.role}" th:selected="${role.inUser}"></option>
+        <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
     </select>
     <br>
     <button class="cc" type="submit" name="id" th:value="${user.id}">edit</button>

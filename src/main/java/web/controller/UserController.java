@@ -16,8 +16,9 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -35,38 +36,36 @@ public class UserController {
     }
 
     @PostMapping(value = "admin/add")
-    public String addPost(User user, String[] roleIds) {
+    public String add(User user, String[] roleIds) {
         user.setRole(userService.getRoles(roleIds));
         userService.addUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping(value = "user")
-    public String userGet(ModelMap modelMap, HttpSession httpSession) {
+    public String user(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("user", httpSession.getAttribute("user"));
         return "user";
     }
 
     @GetMapping(value = "admin/edit")
-    public String editGet(ModelMap model, @RequestParam("id") Long id) {
+    public String edit(ModelMap model, @RequestParam("id") Long id) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         List<Role> roles = userService.getAllRoles();
-        roles.forEach(role -> role.setInUser(user.isRoleInUser(role)));
         model.addAttribute("roles", roles);
         return "admin/edit";
     }
 
     @PostMapping(value = "admin/edit")
-    public String editPost(User user, String[] roleIds) {
+    public String edit(User user, String[] roleIds) {
         user.setRole(userService.getRoles(roleIds));
         userService.updateUser(user);
         return "redirect:/admin";
     }
 
-
     @PostMapping(value = "admin/delete")
-    public String deletePost(@RequestParam("id") Long id) {
+    public String delete(@RequestParam("id") Long id) {
         userService.removeUser(id);
         return "redirect:/admin";
     }
