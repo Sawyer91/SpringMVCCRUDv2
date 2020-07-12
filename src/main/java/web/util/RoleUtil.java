@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class SetRole {
+public class RoleUtil {
 
     public Set<Role> setRole(String[] ids, TypedQuery<Role> query) {
         Set<Role> roles = new HashSet<>();

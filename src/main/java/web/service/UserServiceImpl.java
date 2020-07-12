@@ -15,12 +15,10 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private final UserDao dao;
 
-    private final RoleDao roleDao;
 
     @Autowired
-    public UserServiceImpl(UserDao dao, RoleDao roleDao) {
+    public UserServiceImpl(UserDao dao) {
         this.dao = dao;
-        this.roleDao = roleDao;
     }
 
     @Override
@@ -28,15 +26,6 @@ public class UserServiceImpl implements UserService {
         return dao.getAllUsers();
     }
 
-    @Override
-    public Set<Role> getRoles(String[] ids) {
-        return roleDao.getRoles(ids);
-    }
-
-    @Override
-    public List<Role> getAllRoles() {
-        return roleDao.readRole();
-    }
 
     @Transactional
     @Override
