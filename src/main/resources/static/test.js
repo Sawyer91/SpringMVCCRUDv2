@@ -4,7 +4,7 @@ $(document).ready(getAllUsers());
 function getAllUsers() {
     $("#table").empty();
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/rest/getAllUsers',
         timeout: 3000,
         success: function (data) {
@@ -72,7 +72,7 @@ $(document).on("click", ".delete", function () {
 
     $(document).on("click", ".deleteUser", function () {
         $.ajax({
-            type: 'POST',
+            type: 'DELETE',
             url: '/rest/delete',
             data: {id: $('#id').val()},
             timeout: 100,
@@ -105,7 +105,7 @@ $(document).ready(getUser());
 function getUser() {
     $("#userTable").empty();
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/rest/getUser',
         timeout: 3000,
         error: function() {
@@ -114,7 +114,7 @@ function getUser() {
         success: function (data) {
             console.log(data);
             $.each(data, function (i, user) {
-                if(user.role[0].role == "USER") {
+                if(user.role[0].role === "USER") {
                     $('#menuUser').trigger('click');
                     $('#main2').trigger('click');
                     $('#blockMenuforAdmin').hide();

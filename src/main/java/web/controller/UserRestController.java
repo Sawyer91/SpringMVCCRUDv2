@@ -31,7 +31,7 @@ public class UserRestController {
     }
 
 
-    @PostMapping(value = "/getAllUsers")
+    @GetMapping(value = "getAllUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class UserRestController {
         userService.addUser(new User(name, password, roleService.getRoles(id)));
     }
 
-    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
+    @GetMapping(value = "getUser")
     public ResponseEntity<List<User>> getUser(HttpSession session) {
         List<User> userList = new ArrayList<>();
         User user = (User) session.getAttribute("user");
@@ -73,7 +73,7 @@ public class UserRestController {
         userService.updateUser(user);
     }
 
-    @PostMapping(value = "delete")
+    @DeleteMapping(value = "delete")
     public void delete(@RequestParam("id") Long id) {
         userService.removeUser(id);
     }
