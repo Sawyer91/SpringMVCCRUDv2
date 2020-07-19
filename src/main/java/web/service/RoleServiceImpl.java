@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Set<Role> getRoles(String[] ids) {
+    public Set<Role> getRoles(String ids) {
         return roleDao.getRolesById(ids);
     }
 

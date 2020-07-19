@@ -1,6 +1,5 @@
 package web.util;
-
-import org.springframework.stereotype.Component;
+;
 import web.model.Role;
 
 import javax.persistence.TypedQuery;
@@ -8,12 +7,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
 public class RoleUtil {
 
-    public Set<Role> setRole(String[] ids, TypedQuery<Role> query) {
+    public static Set<Role> getRoleForUser(String ids, TypedQuery<Role> query) {
         Set<Role> roles = new HashSet<>();
-        Arrays.stream(ids).forEach(roleId -> {
+        Arrays.stream(new String[]{ids}).forEach(roleId -> {
             query.setParameter("id", Long.parseLong(roleId));
             roles.add(query.getSingleResult());
         });

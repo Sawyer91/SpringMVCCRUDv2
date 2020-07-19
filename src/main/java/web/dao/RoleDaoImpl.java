@@ -11,18 +11,13 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Set;
 
+import static web.util.RoleUtil.getRoleForUser;
+
 @Repository(value = "roleDaoImpl")
 public class RoleDaoImpl implements RoleDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    private final RoleUtil setRole;
-
-    @Autowired
-    public RoleDaoImpl(RoleUtil setRole) {
-        this.setRole = setRole;
-    }
 
     @Override
     public List<Role> getRoles() {
@@ -31,8 +26,8 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Set<Role> getRolesById(String[] ids) {
+    public Set<Role> getRolesById(String ids) {
         TypedQuery<Role> query= entityManager.createQuery("from Role where id = :id", Role.class);
-        return setRole.setRole(ids, query);
+        return getRoleForUser(ids, query);
     }
 }
